@@ -1,4 +1,4 @@
-package main
+package lib
 
 var charset = []byte{
 	'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
@@ -43,12 +43,36 @@ func FindPasswordNaive(password string) string {
 	return ""
 }
 
-func main() {
-	password := "@kAl1"
-	foundPassword := FindPasswordNaive(password)
-	if foundPassword != "" {
-		println("Password found:", foundPassword)
-	} else {
-		println("Password not found")
+func FindPasswordByCombination(password string) string {
+	n := len(charset)
+	maxLen := len(password)
+
+	for length := 1; length <= maxLen; length++ {
+		indices := make([]int, length)
+
+		for {
+			word := make([]byte, length)
+			for i, idx := range indices {
+				word[i] = charset[idx]
+			}
+
+			if string(word) == password {
+				return string(word)
+			}
+
+			i := length - 1
+			for i >= 0 && indices[i] == n-1 {
+				indices[i] = 0
+				i--
+			}
+
+			if i < 0 {
+				break
+			}
+
+			indices[i]++
+		}
 	}
+
+	return ""
 }
