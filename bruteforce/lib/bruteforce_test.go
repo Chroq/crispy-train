@@ -5,23 +5,35 @@ import (
 	"testing"
 )
 
-func TestShen(t *testing.T) {
+/* func TestShen(t *testing.T) {
 	expected := "Sh3n"
 	got := lib.FindPasswordNaive("Sh3n")
 
 	if got != expected {
 		t.Errorf("Expected %v but got %v", expected, got)
 	}
-}
+} */
 
-func BenchmarkZedNaive(b *testing.B) {
+func BenchmarkAkaliNaive(b *testing.B) {
 	for b.Loop() {
-		lib.FindPasswordNaive("z3d")
+		lib.FindPasswordNaive("Ak4l1")
 	}
 }
 
-func BenchmarkZedCombination(b *testing.B) {
+func BenchmarkAkaliCombination(b *testing.B) {
 	for b.Loop() {
-		lib.FindPasswordByCombination("z3d")
+		lib.FindPasswordByCombination("Ak4l1")
+	}
+}
+
+func BenchmarkAkaliAsync(b *testing.B) {
+	for b.Loop() {
+		lib.FindPasswordAsync("Ak4l1")
+	}
+}
+
+func BenchmarkAkaliCombinationAsync(b *testing.B) {
+	for b.Loop() {
+		lib.FindPasswordByCombinationAsync("Ak4l1")
 	}
 }

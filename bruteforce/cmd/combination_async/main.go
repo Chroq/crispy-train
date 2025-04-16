@@ -3,8 +3,8 @@ package main
 import "bruteforce/lib"
 
 func main() {
-	password := "@kAl1"
-	foundPassword := lib.FindPasswordByCombination(password)
+	password := "@k4l1_l0l"
+	foundPassword := lib.FindPasswordByCombinationAsync(password)
 	if foundPassword != "" {
 		println("Password found:", foundPassword)
 	} else {
