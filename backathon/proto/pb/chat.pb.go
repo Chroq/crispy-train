@@ -22,10 +22,9 @@ const (
 
 type Message struct {
 	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
+	Content       string `protobuf:"bytes,1,opt,name=content,proto3" json:"content,omitempty"`
 	unknownFields protoimpl.UnknownFields
-
-	Content string `protobuf:"bytes,1,opt,name=content,proto3" json:"content,omitempty"`
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Message) Reset() {

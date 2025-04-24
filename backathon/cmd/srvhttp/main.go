@@ -1,33 +1,27 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"net/http"
-	"time"
+
+	"backathon/internal/interfaces/rest"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "Welcome to the API!")
+	r := gin.Default()
+	r.GET("/healthcheck", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"state": "up",
+		})
 	})
 
-	healthHandler := http.HandlerFunc(
-		func(w http.ResponseWriter, r *http.Request) {
-			fmt.Fprintln(w, "OK")
-		},
-	)
-	http.HandleFunc("/api/v1/health", logMiddleware(healthHandler).ServeHTTP)
+	// Initialize your handlers here
+	petStoreHandler := rest.NewPetStoreHandler()
+	server := rest.NewServerHandler(petStoreHandler)
 
-	fmt.Println("Server is running on port 8080...")
-	if err := http.ListenAndServe(":8080", nil); err != nil {
-		fmt.Println("Error starting server:", err)
-	}
-}
+	rest.RegisterHandlers(r, server)
 
-func logMiddleware(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		timeFormated := time.Now().Format(time.RFC1123)
-		fmt.Printf("Received request: %s %s at %s\n", r.Method, r.URL.Path, timeFormated)
-		next.ServeHTTP(w, r)
-	})
+	log.Fatal(r.Run())
 }

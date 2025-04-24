@@ -22,10 +22,9 @@ const (
 
 type GetUserRequest struct {
 	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-
-	Id int32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	sizeCache     protoimpl.SizeCache
+	Id            int32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
 func (x *GetUserRequest) Reset() {
@@ -69,12 +68,11 @@ func (x *GetUserRequest) GetId() int32 {
 
 type CreateUserRequest struct {
 	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
+	FirstName     string `protobuf:"bytes,1,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	LastName      string `protobuf:"bytes,2,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
+	Email         string `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
 	unknownFields protoimpl.UnknownFields
-
-	FirstName string `protobuf:"bytes,1,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
-	LastName  string `protobuf:"bytes,2,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
-	Email     string `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CreateUserRequest) Reset() {
@@ -132,14 +130,13 @@ func (x *CreateUserRequest) GetEmail() string {
 
 type UpdateUserRequest struct {
 	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
+	FirstName     string `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	LastName      string `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
+	Email         string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
+	Password      string `protobuf:"bytes,5,opt,name=password,proto3" json:"password,omitempty"`
 	unknownFields protoimpl.UnknownFields
-
-	Id        int32  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	FirstName string `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
-	LastName  string `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
-	Email     string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
-	Password  string `protobuf:"bytes,5,opt,name=password,proto3" json:"password,omitempty"`
+	sizeCache     protoimpl.SizeCache
+	Id            int32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
 func (x *UpdateUserRequest) Reset() {
@@ -211,10 +208,9 @@ func (x *UpdateUserRequest) GetPassword() string {
 
 type DeleteUserRequest struct {
 	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-
-	Id int32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	sizeCache     protoimpl.SizeCache
+	Id            int32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
 func (x *DeleteUserRequest) Reset() {
@@ -258,14 +254,13 @@ func (x *DeleteUserRequest) GetId() int32 {
 
 type UserResponse struct {
 	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
+	FirstName     string `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	LastName      string `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
+	Email         string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
+	Password      string `protobuf:"bytes,5,opt,name=password,proto3" json:"password,omitempty"`
 	unknownFields protoimpl.UnknownFields
-
-	Id        int32  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	FirstName string `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
-	LastName  string `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
-	Email     string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
-	Password  string `protobuf:"bytes,5,opt,name=password,proto3" json:"password,omitempty"`
+	sizeCache     protoimpl.SizeCache
+	Id            int32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
 func (x *UserResponse) Reset() {
