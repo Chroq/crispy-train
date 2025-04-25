@@ -1,6 +1,6 @@
 package application
 
-import "backathon/domain"
+import "backathon/internal/domain"
 
 type UserUsecaseInterface interface {
 	GetUser(id int32) (domain.User, error)

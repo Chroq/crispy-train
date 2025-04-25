@@ -1,7 +1,7 @@
 package memory
 
 import (
-	"backathon/domain"
+	"backathon/internal/domain"
 	"sync"
 )
 

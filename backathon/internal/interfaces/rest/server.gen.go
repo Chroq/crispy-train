@@ -68,12 +68,14 @@ type OrderStatus string
 
 // Pet defines model for Pet.
 type Pet struct {
-	Category  *Category  `json:"category,omitempty"`
-	Id        *int64     `json:"id,omitempty"`
-	Status    *PetStatus `json:"status,omitempty"`
-	Tags      *[]Tag     `json:"tags,omitempty"`
-	Name      string     `json:"name"`
-	PhotoUrls []string   `json:"photoUrls"`
+	Category  *Category `json:"category,omitempty"`
+	Id        *int64    `json:"id,omitempty"`
+	Name      string    `json:"name"`
+	PhotoUrls []string  `json:"photoUrls"`
+
+	// Status pet status in the store
+	Status *PetStatus `json:"status,omitempty"`
+	Tags   *[]Tag     `json:"tags,omitempty"`
 }
 
 // PetStatus pet status in the store
@@ -243,8 +245,8 @@ type ServerInterface interface {
 // ServerInterfaceWrapper converts contexts to parameters.
 type ServerInterfaceWrapper struct {
 	Handler            ServerInterface
-	ErrorHandler       func(*gin.Context, error, int)
 	HandlerMiddlewares []MiddlewareFunc
+	ErrorHandler       func(*gin.Context, error, int)
 }
 
 type MiddlewareFunc func(c *gin.Context)
@@ -718,9 +720,9 @@ func (siw *ServerInterfaceWrapper) UpdateUser(c *gin.Context) {
 
 // GinServerOptions provides options for the Gin server.
 type GinServerOptions struct {
-	ErrorHandler func(*gin.Context, error, int)
 	BaseURL      string
 	Middlewares  []MiddlewareFunc
+	ErrorHandler func(*gin.Context, error, int)
 }
 
 // RegisterHandlers creates http.Handler with routing matching OpenAPI spec.

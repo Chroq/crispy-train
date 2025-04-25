@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"backathon/internal/interfaces/rest"
+	"backathon/pkg"
 
 	"github.com/gin-gonic/gin"
 )
@@ -17,8 +18,15 @@ func main() {
 		})
 	})
 
-	// Initialize your handlers here
+	// copy swagger.yml to static/swaggerui
+	err := pkg.CopyFile("./api/swagger.yml", "./static/swaggerui/swagger.yml")
+	if err != nil {
+		log.Fatalf("Failed to copy swagger.yml: %v", err)
+	}
+	r.Static("/swagger", "./static/swaggerui")
+
 	petStoreHandler := rest.NewPetStoreHandler()
+
 	server := rest.NewServerHandler(petStoreHandler)
 
 	rest.RegisterHandlers(r, server)

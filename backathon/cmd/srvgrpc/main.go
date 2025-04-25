@@ -5,8 +5,8 @@ import (
 	"log"
 	"net"
 
-	"backathon/domain"
 	"backathon/internal/application"
+	"backathon/internal/domain"
 	"backathon/internal/infrastructure/repository/memory"
 	"backathon/proto/pb"
 
